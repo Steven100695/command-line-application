@@ -1,0 +1,15 @@
+{
+  "name": "phone-specs-cli",
+  "version": "1.0.0",
+  "description": "a cli to interact with phone specs api",
+  "main": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Steven Wang, Kyle Vo, Dipali Makadia",
+  "license": "ISC",
+  "dependencies": {
+    "superagent": "^8.0.9",
+    "yargs": "^17.7.1"
+  }
+}
