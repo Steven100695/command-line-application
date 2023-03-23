@@ -10,5 +10,53 @@
       "model": "iphone_12",
       "resultCount": 4
     }
+  },
+  {
+    "search": {
+      "model": "iphone",
+      "resultCount": 10
+    }
+  },
+  {
+    "search": {
+      "model": "iphone",
+      "resultCount": 10
+    }
+  },
+  {
+    "search": {
+      "model": "iphone",
+      "resultCount": 10
+    }
+  },
+  {
+    "search": {
+      "model": "iphone 12",
+      "resultCount": 4
+    }
+  },
+  {
+    "search": {
+      "model": "iphone",
+      "resultCount": 10
+    }
+  },
+  {
+    "search": {
+      "brand": "apple",
+      "resultCount": 40
+    }
+  },
+  {
+    "search": {
+      "brand": "apple",
+      "resultCount": 40
+    }
+  },
+  {
+    "search": {
+      "brand": "apple",
+      "resultCount": 31
+    }
   }
 ]

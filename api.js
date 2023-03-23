@@ -21,7 +21,7 @@ const brand = async (brandName, page) => {
         //console.log(resquest.body.data.phones);
         return resquest.body.data;
     } catch (error) {
-        console.log('URL doesn`t exist');
+        console.log(`Item not found or the server is having issues, please try again.`);
     }
 };
 
@@ -37,7 +37,7 @@ const model = async (modelsName) => {
 
         return res.body.data;
     } catch (error) {
-        console.log(error);
+        console.log(`Item not found or the server is having issues, please try again.`);
     }
 };
 
@@ -51,7 +51,7 @@ const itemDetail = async (slug) => {
 
         return res.body;
     } catch (error) {
-        console.log(error);
+        console.log(`Item not found or the server is having issues, please try again.`);
     }
 };
 

@@ -15,7 +15,7 @@ yargs(process.argv.slice(2))
                     choices: ['brand', 'model'],
                 })
                 .positional('name', {
-                    describe: 'name of the brand or model',
+                    describe: 'name of the brand or model (use underscore instead of space)',
                     type: 'string',
                 })
             );

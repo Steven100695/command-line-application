@@ -3,9 +3,11 @@ const prompts = require('prompts');
 const api = require('./api.js');
 const history = require('./history.js');
 
+// Variable to keep track of the page
 let currentPage = 1;
 let lastPage = 0;
 
+// Function to create a list of phone choices based on the phones list and the current/last page numbers
 const phoneChoices = (phonesList, currentPage, lastPage) => {
     const choices = phonesList.map((phone) => ({ value: phone.slug }));
     if (currentPage == 1 && currentPage != lastPage) {
@@ -19,19 +21,18 @@ const phoneChoices = (phonesList, currentPage, lastPage) => {
     return choices;
 };
 
-//brand prompt
+// Function to prompt the user to select a brand
 const _brandPrompt = async (name) => {
     try {
-        // Brand search reault can be more than 1 page
-        // Therefore we nee to keep tracking the page number
-        // and give users the option to view different pages result
+        // Search for phones by brand name and page number
         const result = await api.brand(name, currentPage);
         lastPage = result.last_page;
         const phonesList = result.phones;
 
-        // saving search result
-        history.saveSearch({ brand: name, resultCount: result.phones.length });
+        // Save search result to history
+        history.saveSearch({ brand: name, resultCount: phonesList.length });
 
+        // Display a list of phone choices to the user and prompt them to select one
         const prompt = await prompts([
             {
                 type: 'select',
@@ -41,7 +42,7 @@ const _brandPrompt = async (name) => {
             }
         ]);
 
-        // Recalling the function with different page number
+        // Recursively call this function with a different page number if the user selects "Next page" or "Previous page"
         if (prompt.phones == 'Next page') {
             currentPage++;
             return await _brandPrompt(name);
@@ -53,20 +54,22 @@ const _brandPrompt = async (name) => {
             return prompt;
         }
     } catch (error) {
-        console.log(error);
+        console.log(`Item not found or the server is having issues, please try again.`);
     }
 };
 
-// model prompt
+// Function to prompt the user to select a phone model
 const _modelPrompt = async (name) => {
     try {
+        // Search for phones by model name
         const result = await api.model(name);
-        const phones = result.phones;
-        const displayPhone = phones.map((phone) => ({ value: phone.slug }));
+        const phonesList = result.phones;
+        const displayPhone = phonesList.map((phone) => ({ value: phone.slug }));
 
-        // saving search result
-        history.saveSearch({ model: name, resultCount: result.phones.length });
+        // Save search result to history
+        history.saveSearch({ model: name, resultCount: phonesList });
 
+        // Display a list of phone choices to the user and prompt them to select one
         return await prompts([
             {
                 type: 'select',
@@ -76,11 +79,11 @@ const _modelPrompt = async (name) => {
             },
         ]);
     } catch (error) {
-        console.log(error);
+        console.log(`Item not found or the server is having issues, please try again.`);
     }
 };
 
-// calling differernt prompts function depends on user commands
+// Function to call the right prompt function based on the search type (brand or model)
 const _discardPrompt = async (type, name) => {
     if (type == 'brand') {
       return await _brandPrompt(name);
@@ -89,17 +92,18 @@ const _discardPrompt = async (type, name) => {
     }
 };
 
-//search function
+// Main search function
 const search = async (args) => {
+    // Extract properties from the args
     const { type } = args;
     const { name } = args;
 
-    // search phones by brands or models
+    // Call the function to prompt the user
     const result = await _discardPrompt(type, name);
 
-    // showing phones by brands or models
+    // Call the function to get the specifications details for the selected phone
     const specsDetail = await api.itemDetail(result.phones);
-    
+
 }
 
 module.exports = {
