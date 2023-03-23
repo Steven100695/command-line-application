@@ -12,12 +12,14 @@ const brand = async (brandName, page) => {
         const res = await superagent.get(brandURL);
         // Find the requsted brand object
         const brand = res.body.data.find((brand) => brand.brand_name.toLowerCase().includes(brandName.toLowerCase()));
+
         // Get the object brand_slug
         // brand_slug contain `brand_name-phones-brand_id`
-        const brandNameURL = `${base}/brands/${brandName}-phones-${brand.brand_slug}?page=${page}`;
+        const brandNameURL = `${base}/brands/${brand.brand_slug}?page=${page}`;
+        //console.log(brandNameURL);
         const resquest = await superagent.get(brandNameURL);
-        //console.log(resquest.body);
-        return resquest.body;
+        //console.log(resquest.body.data.phones);
+        return resquest.body.data;
     } catch (error) {
         console.log(error);
     }

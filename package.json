@@ -9,6 +9,7 @@
   "author": "Steven Wang, Kyle Vo, Dipali Makadia",
   "license": "ISC",
   "dependencies": {
+    "prompts": "^2.4.2",
     "superagent": "^8.0.9",
     "yargs": "^17.7.1"
   }
