@@ -35,7 +35,7 @@ const model = async (modelsName) => {
         const res = await superagent.get(modelURL);
         //console.log(res.body);
 
-        return res.body;
+        return res.body.data;
     } catch (error) {
         console.log(error);
     }

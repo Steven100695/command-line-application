@@ -59,10 +59,8 @@ const _modelPrompt = async (name) => {
     try {
         const result = await api.model(name);
         const phones = result.phones;
-        const displayPhone = phones.map((phone) => {
-            return { value: phone.slug };
-        });
-  
+        const displayPhone = phones.map((phone) => ({ value: phone.slug }));
+
         return await prompts([
             {
                 type: 'select',
@@ -91,7 +89,7 @@ const search = async () => {
     // const { name } = args;
 
     // search phones by brands or models
-    const result = await _discardPrompt('brand', 'apple');
+    const result = await _discardPrompt('model', 'iphone 12');
 
 }
 
