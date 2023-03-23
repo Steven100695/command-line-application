@@ -67,7 +67,7 @@ const _modelPrompt = async (name) => {
         const displayPhone = phonesList.map((phone) => ({ value: phone.slug }));
 
         // Save search result to history
-        history.saveSearch({ model: name, resultCount: phonesList });
+        history.saveSearch({ model: name, resultCount: phonesList.length });
 
         // Display a list of phone choices to the user and prompt them to select one
         return await prompts([

@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const saveSearch = async (search, phonesList) => {
+const saveSearch = async (search, resultCount) => {
     try {
         // Get the absolute path to the searchHistory.json file
         const searchHistoryPath = path.join(__dirname, 'searchHistory.json');
@@ -27,9 +27,8 @@ const saveSearch = async (search, phonesList) => {
             }
         }
         // Add the new search to the array
-        resultCount = phonesList.length;
         searches.push({ search, resultCount });
-  
+
         // Write the updated array to the searchHistory.json file
         await fs.writeFile(searchHistoryPath, JSON.stringify(searches, null, 2));
 

@@ -58,5 +58,17 @@
       "brand": "apple",
       "resultCount": 31
     }
+  },
+  {
+    "search": {
+      "brand": "apple",
+      "resultCount": 40
+    }
+  },
+  {
+    "search": {
+      "model": "iphone_12",
+      "resultCount": 4
+    }
   }
 ]
