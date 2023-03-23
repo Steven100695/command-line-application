@@ -29,7 +29,9 @@ const _brandPrompt = async (name) => {
         lastPage = result.last_page;
         const phonesList = result.phones;
 
-        //
+        // saving search result
+        history.saveSearch({ brand: name, resultCount: result.phones.length });
+
         const prompt = await prompts([
             {
                 type: 'select',
@@ -62,6 +64,9 @@ const _modelPrompt = async (name) => {
         const phones = result.phones;
         const displayPhone = phones.map((phone) => ({ value: phone.slug }));
 
+        // saving search result
+        history.saveSearch({ model: name, resultCount: result.phones.length });
+
         return await prompts([
             {
                 type: 'select',
@@ -91,15 +96,10 @@ const search = async (args) => {
 
     // search phones by brands or models
     const result = await _discardPrompt(type, name);
-    //save history
-    if (type == 'brand') {
-        history.saveSearch({ brand: name, resultCount: result.phones.length });
-    } else {
-        history.saveSearch({ model: name, resultCount: result.phones.length });
-    }
 
     // showing phones by brands or models
     const specsDetail = await api.itemDetail(result.phones);
+    
 }
 
 module.exports = {

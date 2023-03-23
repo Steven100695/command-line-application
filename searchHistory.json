@@ -1,8 +1,14 @@
 [
   {
     "search": {
-      "brand": "apple",
-      "resultCount": 35
+      "model": "iphone",
+      "resultCount": 10
+    }
+  },
+  {
+    "search": {
+      "model": "iphone_12",
+      "resultCount": 4
     }
   }
 ]

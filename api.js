@@ -21,7 +21,7 @@ const brand = async (brandName, page) => {
         //console.log(resquest.body.data.phones);
         return resquest.body.data;
     } catch (error) {
-        console.log(error);
+        console.log('URL doesn`t exist');
     }
 };
 

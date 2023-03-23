@@ -12,7 +12,7 @@ yargs(process.argv.slice(2))
                 .positional('type', {
                     describe: 'type of search',
                     type: 'string',
-                    choices: ['brand', 'phone'],
+                    choices: ['brand', 'model'],
                 })
                 .positional('name', {
                     describe: 'name of the brand or model',
