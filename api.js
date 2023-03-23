@@ -44,10 +44,10 @@ const model = async (modelsName) => {
 const itemDetail = async (slug) => {
     try {
         const specsURL = `${base}/${slug}`;
-        console.log(specsURL);
+        // console.log(specsURL);
 
         const res = await superagent.get(specsURL);
-        console.log(res.body);
+        // console.log(res.body);
 
         return res.body;
     } catch (error) {

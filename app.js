@@ -1,6 +1,7 @@
 const prompts = require('prompts');
 
 const api = require('./api.js');
+const history = require('./history.js');
 
 let currentPage = 1;
 let lastPage = 0;
@@ -84,16 +85,22 @@ const _discardPrompt = async (type, name) => {
 };
 
 //search function
-const search = async () => {
-    // const { type } = args;
-    // const { name } = args;
+const search = async (args) => {
+    const { type } = args;
+    const { name } = args;
 
     // search phones by brands or models
-    const result = await _discardPrompt('model', 'iphone 12');
+    const result = await _discardPrompt(type, name);
+    //save history
+    if (type == 'brand') {
+        history.saveSearch({ brand: name, resultCount: result.phones.length });
+    } else {
+        history.saveSearch({ model: name, resultCount: result.phones.length });
+    }
 
+    // showing phones by brands or models
+    const specsDetail = await api.itemDetail(result.phones);
 }
-
-search();
 
 module.exports = {
     search

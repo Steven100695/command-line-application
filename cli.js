@@ -1,5 +1,7 @@
 const yargs = require('yargs/yargs');
 
+const app = require('./app.js');
+
 yargs(process.argv.slice(2))
     .usage('$0: Usage <command> [options]')
     .command(
@@ -19,7 +21,8 @@ yargs(process.argv.slice(2))
             );
         },
         (args) => {
-            console.log(args);
+            //invoke search function
+            app.search(args);
         }
     )
     .help()
