@@ -5,62 +5,75 @@ const api = require('./api.js');
 let currentPage = 1;
 let lastPage = 0;
 
-//brand prompt
-const _brandPrompt = async (name) => {
-    const result = await api.brand(name, currentPage);
-    lastPage = result.last_page;
-    const phones = result.phones;
-    const displayPhone = phones.map((phone) => ({ value: phone.slug }));;
-
-    // brand search reault can be more then 1 page
-    // we let the user has option to back and forward pages to see all the result
+const phoneChoices = (phonesList, currentPage, lastPage) => {
+    const choices = phonesList.map((phone) => ({ value: phone.slug }));
     if (currentPage == 1 && currentPage != lastPage) {
-        displayPhone.push({ value: 'Next page' });
+        choices.push({ value: 'Next page' });
     } else {
-        displayPhone.push({ value: 'Previous  page' });
+        choices.push({ value: 'Previous  page' });
         if (currentPage < lastPage) {
-            displayPhone.push({ value: 'Next page' });
+            choices.push({ value: 'Next page' });
         }
     }
+    return choices;
+};
 
-    const prompt = await prompts([
-        {
-            type: 'select',
-            name: 'phones',
-            message: 'Select phones',
-            choices: displayPhone
+//brand prompt
+const _brandPrompt = async (name) => {
+    try {
+        // Brand search reault can be more than 1 page
+        // Therefore we nee to keep tracking the page number
+        // and give users the option to view different pages result
+        const result = await api.brand(name, currentPage);
+        lastPage = result.last_page;
+        const phonesList = result.phones;
+
+        //
+        const prompt = await prompts([
+            {
+                type: 'select',
+                name: 'phones',
+                message: 'Select phones',
+                choices: phoneChoices(phonesList, currentPage, lastPage)
+            }
+        ]);
+
+        // Recalling the function with different page number
+        if (prompt.phones == 'Next page') {
+            currentPage++;
+            return await _brandPrompt(name);
+        } else if (prompt.phones == 'Previous  page') {
+            currentPage--;
+            return await _brandPrompt(name);
+        } else {
+            currentPage = 1;
+            return prompt;
         }
-    ]);
-
-    // User can selection next or previous page to view more results
-    if (prompt.phones == 'Next page') {
-        currentPage++;
-        return _brandPrompt(name);
-    } else if (prompt.phones == 'Previous  page') {
-        currentPage--;
-        return _brandPrompt(name);
-    } else {
-        currentPage = 1;
-        return prompt;
+    } catch (error) {
+        console.log(error);
     }
 };
 
 // model prompt
 const _modelPrompt = async (name) => {
-    const result = await api.model(name);
-    const phones = result.phones;
-    const displayPhone = phones.map((phone) => {
-        return { value: phone.slug };
-    });
+    try {
+        const result = await api.model(name);
+        const phones = result.phones;
+        const displayPhone = phones.map((phone) => {
+            return { value: phone.slug };
+        });
   
-    return await prompts([
-        {
-            type: 'select',
-            name: 'phones',
-            message: 'Select phones',
-            choices: displayPhone,
-        },
-    ]);
+        return await prompts([
+            {
+                type: 'select',
+                name: 'phones',
+                message: 'Select phones',
+                choices: displayPhone,
+            },
+        ]);
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 // calling differernt prompts function depends on user commands
@@ -72,13 +85,13 @@ const _discardPrompt = async (type, name) => {
     }
 };
 
-const search = async (args) => {
-    const { type } = args;
-    const { name } = args;
+//search function
+const search = async () => {
+    // const { type } = args;
+    // const { name } = args;
 
     // search phones by brands or models
-    const result = await _discardPrompt(type, name);
-
+    const result = await _discardPrompt('brand', 'apple');
 
 }
 
