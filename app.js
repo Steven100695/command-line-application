@@ -1,3 +1,5 @@
+const superagent = require('superagent');
+
 const prompts = require('prompts');
 
 const api = require('./api.js');
@@ -92,6 +94,39 @@ const _discardPrompt = async (type, name) => {
     }
 };
 
+const displayDetail = (specsDetail) => {
+
+    // Create an array with the information to display
+    // We have to hardcode it due to how the information is listed on the api website
+    const specific = specsDetail.specifications;
+    const specificValues = Object.values(specific);
+    const specsArray = [
+        { Spec: "Brand", Detail: specsDetail.brand },
+        { Spec: "Name", Detail: specsDetail.phone_name },
+        { Spec: "Release Date", Detail: specsDetail.release_date },
+        { Spec: "Dimension", Detail: specsDetail.dimension },
+        { Spec: "OS", Detail: specsDetail.os },
+        { Spec: "Storage", Detail: specsDetail.storage },
+        { Spec: "Network", Detail: specificValues[0].specs[0].val[0] },
+        { Spec: "Display Resolution", Detail: specificValues[3].specs[1].val[0] },
+        { Spec: "Display Size", Detail: specificValues[3].specs[2].val[0] },
+        { Spec: "Main Camera Modules", Detail: specificValues[6].specs[0].key },
+        { Spec: "Main Camera Video", Detail: specificValues[6].specs[2].val[0] },
+        { Spec: "Selfie Camera Video", Detail: specificValues[7].specs[2].val[0] },
+        { Spec: "CPU", Detail: specificValues[4].specs[2].val[0] },
+        { Spec: "GPU", Detail: specificValues[4].specs[3].val[0] },
+        { Spec: "RAM", Detail: specificValues[5].specs[1].val[0] },
+        { Spec: "Battery", Detail: specificValues[11].specs[0].val[0] },
+        { Spec: "Colors", Detail: specificValues[12].specs[0].val[0] },
+        { Spec: "Price", Detail: specificValues[12].specs[2].val[0] },
+    ];
+
+    // Display the data in a table
+    //The "Spec" and "Detail" columns are used to label the data correctly,
+    //or the detail will be in different columns base on if the detail is from the key or val
+    console.table(specsArray, ["Spec", "Detail"]);
+};
+
 // Main search function
 const search = async (args) => {
     // Extract properties from the args
@@ -104,7 +139,9 @@ const search = async (args) => {
     // Call the function to get the specifications details for the selected phone
     const specsDetail = await api.itemDetail(result.phones);
 
-}
+    // Call the function to to display the detail
+    displayDetail(specsDetail);
+   };
 
 module.exports = {
     search

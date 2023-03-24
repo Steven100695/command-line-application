@@ -49,7 +49,7 @@ const itemDetail = async (slug) => {
         const res = await superagent.get(specsURL);
         // console.log(res.body);
 
-        return res.body;
+        return res.body.data;
     } catch (error) {
         console.log(`Item not found or the server is having issues, please try again.`);
     }
