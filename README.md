@@ -55,6 +55,13 @@ The following technologies were used to build this application:
 - JavaScript
 - Node.js
 
-## Data Source
+## Dependencies
 
-The phone specifications used in this application are obtained from the [Phone Specs API](https://github.com/azharimm/phone-specs-api) , a free and open-source API that provides comprehensive and up-to-date information on various phone models. We are grateful to the developers who created and maintain this API, and we highly recommend checking out their project if you are interested in building phone-related applications.
+The Phone Search Command Line Application uses the following dependencies:
+
+- fs.promises - Node.js file system module with Promise-based API.
+- superagent - Library for making HTTP requests.
+- prompts - Lightweight prompt library for Node.js.
+- yargs - Command-line parser for Node.js.
+
+Additionally, the application uses the [Phone Specs API](https://github.com/azharimm/phone-specs-api) for retrieving phone specifications, a free and open-source API that provides comprehensive and up-to-date information on various phone models. We are grateful to the developers who created and maintain this API.
