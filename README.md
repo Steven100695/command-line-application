@@ -21,8 +21,9 @@ To use the application, run the following command in the terminal:
 ```
 
 Run the application using the command: node cli.js <type> <name>
-*The <type> argument can be either brand or name.
-*The <name> argument is the name of the brand or phone model you want to search for.
+
+- The <type> argument can be either brand or name.
+- The <name> argument is the name of the brand or phone model you want to search for.
 
 For example:
 
