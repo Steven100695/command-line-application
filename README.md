@@ -23,7 +23,7 @@ This will install all the necessary dependencies.
 To use the application, run the following command in the terminal:
 
 ```
-    node app.js <type> <name>
+    node cli.js <type> <name>
 ```
 
 Run the application using the command: node cli.js <type> <name>
