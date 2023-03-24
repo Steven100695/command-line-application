@@ -1,6 +1,6 @@
 # Phone Search Command Line Application
 
-This is a command-line application that allows users to search for phone brands and models. This Command Line Application demonstrates our understanding of JavaScript and Node.js by building a CLI that searches for phone brands and models.
+This is a command-line application that allows users to search for phone brands and models. This Command Line Application demonstrates our understanding of JavaScript and Node.js by building a CLI that searches for phone by brands and models.
 
 ## Authors
 
@@ -54,3 +54,7 @@ The following technologies were used to build this application:
 
 - JavaScript
 - Node.js
+
+## Data Source
+
+The phone specifications used in this application are obtained from the [Phone Specs API](https://github.com/azharimm/phone-specs-api) , a free and open-source API that provides comprehensive and up-to-date information on various phone models. We are grateful to the developers who created and maintain this API, and we highly recommend checking out their project if you are interested in building phone-related applications.
