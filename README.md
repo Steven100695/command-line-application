@@ -46,6 +46,7 @@ The Phone Search Command Line Application allows users to:
 - Search for phone brands and models.
 - View the search history.
 - Save the search history to a JSON file.
+- Display phone specifications detail.
 
 ## Technologies
 
