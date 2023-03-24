@@ -6,7 +6,7 @@ This is a command-line application that allows users to search for phone brands 
 
 To install the application, clone this repository and run the following command in the terminal:
 
-```bash
+```console
     npm install
 ```
 
@@ -16,7 +16,7 @@ This will install all the necessary dependencies.
 
 To use the application, run the following command in the terminal:
 
-```bash
+```console
     node app.js <type> <name>
 ```
 
