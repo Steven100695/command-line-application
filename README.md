@@ -28,8 +28,8 @@ To use the application, run the following command in the terminal:
 
 Run the application using the command: node cli.js <type> <name>
 
-- The <type> argument can be either brand or name.
-- The <name> argument is the name of the brand or phone model you want to search for.
+- The `type` argument can be either `brand` or `name`.
+- The `name` argument is the name of the brand or phone model you want to search for.
 
 For example:
 
@@ -59,9 +59,9 @@ The following technologies were used to build this application:
 
 The Phone Search Command Line Application uses the following dependencies:
 
-- fs.promises - Node.js file system module with Promise-based API.
-- superagent - Library for making HTTP requests.
-- prompts - Lightweight prompt library for Node.js.
-- yargs - Command-line parser for Node.js.
+- `fs.promises` - Node.js file system module with Promise-based API.
+- `superagent` - Library for making HTTP requests.
+- `prompts` - Lightweight prompt library for Node.js.
+- `yargs` - Command-line parser for Node.js.
 
 Additionally, the application uses the [Phone Specs API](https://github.com/azharimm/phone-specs-api) for retrieving phone specifications, a free and open-source API that provides comprehensive and up-to-date information on various phone models. We are grateful to the developers who created and maintain this API.
