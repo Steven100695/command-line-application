@@ -2,11 +2,17 @@
 
 This is a command-line application that allows users to search for phone brands and models. It is built with JavaScript and Node.js.
 
+## Authors
+
+- Steven Wang
+- Kyle Vo
+- Dipali Makadia
+
 ## Installation
 
 To install the application, clone this repository and run the following command in the terminal:
 
-```console
+```
     npm install
 ```
 
@@ -16,7 +22,7 @@ This will install all the necessary dependencies.
 
 To use the application, run the following command in the terminal:
 
-```console
+```
     node app.js <type> <name>
 ```
 
@@ -27,7 +33,7 @@ Run the application using the command: node cli.js <type> <name>
 
 For example:
 
-```bash
+```
     node cli.js search brand samsung
 ```
 
@@ -37,13 +43,13 @@ This will search for all phone models from the brand samsung.
 
 The Phone Search Command Line Application allows users to:
 
-    Search for phone brands and models.
-    View the search history.
-    Save the search history to a JSON file.
+- Search for phone brands and models.
+- View the search history.
+- Save the search history to a JSON file.
 
 ## Technologies
 
 The following technologies were used to build this application:
 
-    JavaScript
-    Node.js
+- JavaScript
+- Node.js
