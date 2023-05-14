@@ -5,17 +5,12 @@ const app = require('./app.js');
 yargs(process.argv.slice(2))
     .usage('$0: Usage <command> [options]')
     .command(
-        'search <type> <name>',
+        'search brand <name>',
         'search phone by brand or model',
         (yargs) => {
             return (yargs
-                .positional('type', {
-                    describe: 'type of search',
-                    type: 'string',
-                    choices: ['brand', 'model'],
-                })
                 .positional('name', {
-                    describe: 'name of the brand or model (use underscore instead of space)',
+                    describe: 'name of the brand (use underscore instead of space)',
                     type: 'string',
                 })
             );

@@ -1,9 +1,9 @@
 const superagent = require('superagent');
-const base = 'https://phone-specs-api.azharimm.dev';
+const base = 'https://phone-specs-api.vercel.app/';
 
 //search by brands
 const brand = async (brandName, page) => {
-    // https://phone-specs-api.azharimm.dev/brands/apple-phones-48?page=1
+    // https://phone-specs-api.vercel.app/brands/apple-phones-48?page=1
     // Every brand and phones have their own id, we need those IDs for our API link.
     // Since the user will have no idea what those IDs are, we need to find it ourself.
     try {
@@ -25,6 +25,7 @@ const brand = async (brandName, page) => {
     }
 };
 
+/* search link don't work with the recently updated api link, 'https://phone-specs-api.vercel.app/'
 //search by model
 const model = async (modelsName) => {
     // https://phone-specs-api.azharimm.dev/search?query=iPhone_12_pro_max
@@ -40,6 +41,7 @@ const model = async (modelsName) => {
         console.log(`Item not found or the server is having issues, please try again.`);
     }
 };
+*/
 
 const itemDetail = async (slug) => {
     try {
@@ -57,6 +59,5 @@ const itemDetail = async (slug) => {
 
 module.exports = {
     brand,
-    model,
     itemDetail
 }
